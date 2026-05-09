@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kruthika R Gowdar | AI/ML & Full Stack Developer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script>
+    (function () {
+        emailjs.init("wWF6qaaa619MAo7Lq");
+    })();
+    </script>
+</head>
+<body>
+    <!-- 3D Background Canvas -->
+    <canvas id="bg-canvas"></canvas>
+    
+    <!-- Particle System -->
+    <div class="particles" id="particles"></div>
+
+    <!-- Dynamic Header -->
+    <header id="header">
+        <div class="container">
+            <div class="logo">
+                <span class="logo-text">KRG</span>
+                <span class="logo-full">KRUTHIKA R GOWDAR</span>
+            </div>
+            <nav>
+                <ul id="nav-menu">
+                    <li><a href="#home" class="nav-link active">Home</a></li>
+                    <li><a href="#about" class="nav-link">About</a></li>
+                    <li><a href="#skills" class="nav-link">Skills</a></li>
+                    <li><a href="#projects" class="nav-link">Projects</a></li>
+                    <li><a href="#internships" class="nav-link">Internships</a></li>
+                    <li><a href="#contact" class="nav-link">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="mobile-menu" id="mobile-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section with 3D Elements -->
+    <section id="home" class="hero">
+        <div class="hero-bg-overlay"></div>
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text" data-scroll>
+                    <div class="typing-container">
+                        <h4 class="greeting">Hello, I'm</h4>
+                        <h1 class="name-title">
+                            <span class="name-highlight glitch" data-text="KRUTHIKA R GOWDAR">KRUTHIKA R GOWDAR</span>
+                        </h1>
+                    </div>
+                    <div class="hero-roles">
+                        <span class="role-item">AI/ML Engineer</span>
+                        <span class="role-separator">|</span>
+                        <span class="role-item">Full Stack Developer</span>
+                        <span class="role-separator">|</span>
+                        <span class="role-item">Computer Science Student</span>
+                    </div>
+                    <div class="hero-buttons">
+                        <a href="#projects" class="btn primary-btn">
+                            <span>View My Work</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                        <a href="#contact" class="btn secondary-btn">
+                            <span>Let's Talk</span>
+                            <i class="fas fa-paper-plane"></i>
+                        </a>
+                    </div>
+                    <div class="hero-stats">
+                        <div class="stat-item">
+                            <span class="stat-number" data-count="4">0</span>
+                            <span class="stat-label">Projects</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number" data-count="2">0</span>
+                            <span class="stat-label">Internships</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number" data-count="15">0</span>
+                            <span class="stat-label">Skills</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-image" data-scroll>
+                    <div class="profile-3d-container">
+                        <div class="profile-card">
+                            <div class="profile-image-wrapper">
+                                <img src="hgk.jpg" alt="Kruthika" class="profile-img">
+                                <div class="profile-glow"></div>
+                            </div>
+                            <div class="profile-frame"></div>
+                        </div>
+                        <div class="floating-icons">
+                            <div class="tech-orb" style="--delay: 0s;">
+                                <i class="fab fa-python"></i>
+                            </div>
+                            <div class="tech-orb" style="--delay: 0.5s;">
+                                <i class="fas fa-brain"></i>
+                            </div>
+                            <div class="tech-orb" style="--delay: 1s;">
+                                <i class="fab fa-js"></i>
+                            </div>
+                            <div class="tech-orb" style="--delay: 1.5s;">
+                                <i class="fas fa-database"></i>
+                            </div>
+                            <div class="tech-orb" style="--delay: 2s;">
+                                <i class="fab fa-react"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <div class="mouse">
+                <div class="wheel"></div>
+            </div>
+            <p>Scroll Down</p>
+        </div>
+    </section>
+
+    <!-- About Section with 3D Cards -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title" data-scroll>
+                <span class="title-text">About Me</span>
+                <span class="title-decoration"></span>
+            </h2>
+            <div class="about-content">
+                <div class="about-text" data-scroll>
+                    <div class="about-card glass-card">
+                        <p class="intro-text">I'm a <span class="highlight">Computer Science student</span> (6th semester) at GM Institute of Technology with a strong passion for <span class="highlight">Artificial Intelligence/Machine Learning</span> and <span class="highlight">Full Stack Development</span>.</p>
+                        
+                        <p>I specialize in building intelligent systems using deep learning, creating scalable web applications with FastAPI and Flask, and deploying production-ready models with Streamlit.</p>
+                        
+                        <p>My expertise includes <span class="highlight">Vision Transformers</span>, <span class="highlight">SHAP-based explainability</span>, and building end-to-end ML pipelines. I'm passionate about solving real-world problems through technology.</p>
+                        
+                        <p>Beyond coding, I'm a creative entrepreneur—I run a handmade crochet business on Instagram, crafting unique products that blend artistry with craftsmanship.</p>
+                    </div>
+
+                    <div class="personal-info">
+                        <div class="info-card glass-card" data-scroll style="--delay: 0.1s;">
+                            <div class="info-icon">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div class="info-content">
+                                <span class="info-label">Name</span>
+                                <p class="info-value">KRUTHIKA R GOWDAR</p>
+                            </div>
+                        </div>
+                        <div class="info-card glass-card" data-scroll style="--delay: 0.2s;">
+                            <div class="info-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="info-content">
+                                <span class="info-label">Email</span>
+                                <p class="info-value">kruthikargowdar12@gmail.com</p>
+                            </div>
+                        </div>
+                        <div class="info-card glass-card" data-scroll style="--delay: 0.3s;">
+                            <div class="info-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div class="info-content">
+                                <span class="info-label">Phone</span>
+                                <p class="info-value">+91 7892345542</p>
+                            </div>
+                        </div>
+                        <div class="info-card glass-card" data-scroll style="--delay: 0.4s;">
+                            <div class="info-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="info-content">
+                                <span class="info-label">Location</span>
+                                <p class="info-value">Davanagere, Karnataka, India</p>
+                            </div>
+                        </div>
+                        <div class="info-card glass-card" data-scroll style="--delay: 0.5s;">
+                            <div class="info-icon">
+                                <i class="fas fa-graduation-cap"></i>
+                            </div>
+                            <div class="info-content">
+                                <span class="info-label">Education</span>
+                                <p class="info-value">B.E. Computer Science (CGPA: 8.5)</p>
+                                <p class="info-subvalue">GM Institute of Technology</p>
+                            </div>
+                        </div>
+                        <div class="resume-card glass-card" data-scroll style="--delay: 0.6s;">
+                            <a href="KRUTHIKA R GOWDA.pdf" download class="btn resume-btn">
+                                <i class="fas fa-file-pdf"></i>
+                                <span>Download Resume</span>
+                                <div class="btn-glow"></div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section with 3D Hover Effects -->
+    <section id="skills" class="skills">
+        <div class="container">
+            <h2 class="section-title" data-scroll>
+                <span class="title-text">Technical Skills</span>
+                <span class="title-decoration"></span>
+            </h2>
+            <div class="skills-container">
+                <div class="skill-category glass-card" data-scroll style="--delay: 0.1s;">
+                    <div class="category-header">
+                        <div class="category-icon">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <h3>Programming Languages</h3>
+                    </div>
+                    <div class="skill-grid">
+                        <div class="skill-item">
+                            <span class="skill-name">Python</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="--progress: 90%;"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">JavaScript</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="--progress: 85%;"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">SQL</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="--progress: 80%;"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">HTML/CSS</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="--progress: 95%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skill-category glass-card" data-scroll style="--delay: 0.2s;">
+                    <div class="category-header">
+                        <div class="category-icon">
+                            <i class="fas fa-cube"></i>
+                        </div>
+                        <h3>Frameworks & Libraries</h3>
+                    </div>
+                    <div class="skill-tags">
+                        <span class="skill-tag">FastAPI</span>
+                        <span class="skill-tag">Flask</span>
+                        <span class="skill-tag">Django</span>
+                        <span class="skill-tag">Streamlit</span>
+                        <span class="skill-tag">PyTorch</span>
+                        <span class="skill-tag">Scikit-learn</span>
+                        <span class="skill-tag">Pandas</span>
+                        <span class="skill-tag">NumPy</span>
+                        <span class="skill-tag">SHAP</span>
+                    </div>
+                </div>
+
+                <div class="skill-category glass-card" data-scroll style="--delay: 0.3s;">
+                    <div class="category-header">
+                        <div class="category-icon">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <h3>Expertise</h3>
+                    </div>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Machine Learning</span>
+                        <span class="skill-tag">Deep Learning</span>
+                        <span class="skill-tag">Vision Transformers</span>
+                        <span class="skill-tag">Deepfake Detection</span>
+                        <span class="skill-tag">Data Preprocessing</span>
+                        <span class="skill-tag">Model Explainability</span>
+                        <span class="skill-tag">Full Stack Development</span>
+                    </div>
+                </div>
+
+                <div class="skill-category glass-card" data-scroll style="--delay: 0.4s;">
+                    <div class="category-header">
+                        <div class="category-icon">
+                            <i class="fas fa-tools"></i>
+                        </div>
+                        <h3>Tools & Others</h3>
+                    </div>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Git</span>
+                        <span class="skill-tag">GitHub Pages</span>
+                        <span class="skill-tag">Data Structures</span>
+                        <span class="skill-tag">OOP</span>
+                        <span class="skill-tag">Agile Methodology</span>
+                    </div>
+                </div>
+
+                <div class="skill-category glass-card" data-scroll style="--delay: 0.5s;">
+                    <div class="category-header">
+                        <div class="category-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <h3>Professional Skills</h3>
+                    </div>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Strategic Thinking</span>
+                        <span class="skill-tag">Analytical Reasoning</span>
+                        <span class="skill-tag">Technical Presentation</span>
+                        <span class="skill-tag">Creative Problem Solving</span>
+                        <span class="skill-tag">Adaptive Learning</span>
+                        <span class="skill-tag">Entrepreneurial Mindset</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section with 3D Cards -->
+    <section id="projects" class="projects">
+        <div class="container">
+            <h2 class="section-title" data-scroll>
+                <span class="title-text">Featured Projects</span>
+                <span class="title-decoration"></span>
+            </h2>
+            <div class="project-filters" data-scroll>
+                <button class="filter-btn active" data-filter="all">
+                    <span>All Projects</span>
+                    <div class="filter-glow"></div>
+                </button>
+                <button class="filter-btn" data-filter="ml">
+                    <span>Machine Learning</span>
+                    <div class="filter-glow"></div>
+                </button>
+                <button class="filter-btn" data-filter="web">
+                    <span>Web Development</span>
+                    <div class="filter-glow"></div>
+                </button>
+            </div>
+            <div class="projects-grid" id="projects-grid"></div>
+        </div>
+    </section>
+
+    <!-- Internships Section -->
+    <section id="internships" class="internships">
+        <div class="container">
+            <h2 class="section-title" data-scroll>
+                <span class="title-text">Internship Experience</span>
+                <span class="title-decoration"></span>
+            </h2>
+            <div class="timeline">
+                <div class="timeline-item glass-card" data-scroll style="--delay: 0.1s;">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <div class="internship-header">
+                            <h3>SPARK AI Research Internship</h3>
+                            <span class="internship-badge">Oct 2024</span>
+                        </div>
+                        <p class="internship-company">
+                            <i class="fas fa-building"></i>
+                            Subbaiah Research Institute & JNN College of Engineering
+                        </p>
+                        <ul class="internship-details">
+                            <li>Worked on AI-driven healthcare applications using machine learning and deep learning techniques</li>
+                            <li>Applied data preprocessing, model training, and evaluation in real-world scenarios</li>
+                            <li>Contributed to developing intelligent systems for medical imaging analysis</li>
+                        </ul>
+                        <div class="internship-tags">
+                            <span class="tag">AI</span>
+                            <span class="tag">Healthcare</span>
+                            <span class="tag">Deep Learning</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item glass-card" data-scroll style="--delay: 0.2s;">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <div class="internship-header">
+                            <h3>Python Full Stack with Gen AI Intern</h3>
+                            <span class="internship-badge current">Jan 2026 – Present</span>
+                        </div>
+                        <p class="internship-company">
+                            <i class="fas fa-building"></i>
+                            Dhee Coding Labs
+                        </p>
+                        <ul class="internship-details">
+                            <li>Developing full-stack web applications using Python and modern frameworks</li>
+                            <li>Gaining hands-on experience in integrating GenAI into real-world applications</li>
+                            <li>Building scalable and efficient backend solutions with FastAPI and Django</li>
+                        </ul>
+                        <div class="internship-tags">
+                            <span class="tag">Full Stack</span>
+                            <span class="tag">Gen AI</span>
+                            <span class="tag">Python</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section with 3D Form -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title" data-scroll>
+                <span class="title-text">Get In Touch</span>
+                <span class="title-decoration"></span>
+            </h2>
+
+            <div class="contact-content">
+                <div class="contact-info glass-card" data-scroll>
+                    <h3>Contact Information</h3>
+                    <div class="contact-items">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="contact-text">
+                                <span class="contact-label">Email</span>
+                                <a href="mailto:kruthigowdar12@gmail.com">kruthigowdar12@gmail.com</a>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div class="contact-text">
+                                <span class="contact-label">Phone</span>
+                                <a href="tel:+917892345542">+91 7892345542</a>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="contact-text">
+                                <span class="contact-label">Location</span>
+                                <span>Davanagere, Karnataka, India</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/in/kruthikar-gowdar-4a4175325" target="_blank" class="social-link">
+                            <i class="fab fa-linkedin"></i>
+                            <span class="social-tooltip">LinkedIn</span>
+                        </a>
+                        <a href="https://github.com/kruthikargowdar" target="_blank" class="social-link">
+                            <i class="fab fa-github"></i>
+                            <span class="social-tooltip">GitHub</span>
+                        </a>
+                        <a href="https://twitter.com" target="_blank" class="social-link">
+                            <i class="fab fa-twitter"></i>
+                            <span class="social-tooltip">Twitter</span>
+                        </a>
+                        <a href="https://instagram.com" target="_blank" class="social-link">
+                            <i class="fab fa-instagram"></i>
+                            <span class="social-tooltip">Instagram</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="contact-form-container glass-card" data-scroll>
+                    <form id="contact-form" class="contact-form" onsubmit="sendEmail(event); return false;">
+                        <div class="form-group">
+                            <input type="text" name="from_name" placeholder="Your Name" required>
+                            <div class="input-glow"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="email" name="from_email" placeholder="Your Email" required>
+                            <div class="input-glow"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <textarea name="message" placeholder="Your Message" rows="6" required></textarea>
+                            <div class="input-glow"></div>
+                        </div>
+
+                        <button type="submit" class="btn submit-btn">
+                            <span>Send Message</span>
+                            <i class="fas fa-paper-plane"></i>
+                            <div class="btn-glow"></div>
+                        </button>
+
+                        <p id="form-message"></p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; <span id="current-year"></span> Kruthika R Gowdar. All Rights Reserved.</p>
+                <p class="footer-tagline">Crafted with <i class="fas fa-heart"></i> and <i class="fas fa-code"></i></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
