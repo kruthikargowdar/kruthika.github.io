@@ -11,23 +11,26 @@
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
     <!-- FontAwesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Three.js Library for 3D Background -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-    <!-- 3D Particle Background Canvas -->
+    <!-- Three.js 3D Background Canvas -->
     <canvas id="particleCanvas"></canvas>
 
-    <!-- Interactive Custom Cursor Follower -->
+    <!-- Custom Cursor Follower -->
     <div class="cursor-glow" id="cursorGlow"></div>
 
-    <!-- Header & Navigation -->
+    <!-- Impressive Floating Liquid Navbar -->
     <header class="navbar" id="navbar">
         <div class="nav-container">
             <a href="#hero" class="nav-logo">&lt;Kruthika /&gt;</a>
             
             <nav class="nav-links-container" id="navLinksContainer">
+                <div class="nav-indicator" id="navIndicator"></div>
                 <a href="#hero" class="nav-link active">Home</a>
                 <a href="#about" class="nav-link">About</a>
                 <a href="#skills" class="nav-link">Skills</a>

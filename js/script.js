@@ -1,22 +1,203 @@
 /* ==========================================================================
-   Kruthika R Gowdar Portfolio - Dynamic Interactions (JS)
+   Kruthika R Gowdar Portfolio - Dynamic Interactions (Three.js & Liquid Nav)
    ========================================================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
     
-    // 1. CUSTOM CURSOR GLOW
-    const cursorGlow = document.getElementById('cursorGlow');
+    // 1. THREE.JS 3D BACKGROUND
+    const canvas = document.getElementById('particleCanvas');
+    if (canvas && typeof THREE !== 'undefined') {
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 100);
+        const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
+        
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        
+        // Add soft lighting to highlight 3D forms
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.75);
+        scene.add(ambientLight);
+        
+        const keyLight = new THREE.DirectionalLight(0xfff5f7, 0.95);
+        keyLight.position.set(5, 8, 5);
+        scene.add(keyLight);
+        
+        const fillLight = new THREE.DirectionalLight(0xf0f3ff, 0.75);
+        fillLight.position.set(-5, -3, 3);
+        scene.add(fillLight);
+
+        // Geometries
+        const geometries = [
+            new THREE.TorusGeometry(0.8, 0.28, 16, 100),
+            new THREE.ConeGeometry(0.7, 1.4, 32),
+            new THREE.SphereGeometry(0.7, 32, 32),
+            new THREE.DodecahedronGeometry(0.8),
+            new THREE.TorusKnotGeometry(0.5, 0.16, 100, 16)
+        ];
+
+        // Pastel Colors
+        const pastelColors = [
+            0xffccd5, // pastel pink
+            0xd8e2dc, // sage green
+            0xffcad4, // pastel rose
+            0xb3c5ff, // pastel lavender blue
+            0xffe5d9, // pastel peach
+            0xdfccfb  // pastel lilac
+        ];
+
+        const shapes = [];
+        const count = 18;
+
+        for (let i = 0; i < count; i++) {
+            const geom = geometries[Math.floor(Math.random() * geometries.length)];
+            const color = pastelColors[Math.floor(Math.random() * pastelColors.length)];
+            const mat = new THREE.MeshPhongMaterial({
+                color: color,
+                shininess: 90,
+                specular: 0xffffff,
+                flatShading: true
+            });
+            const mesh = new THREE.Mesh(geom, mat);
+            
+            // Randomly position inside viewport space
+            mesh.position.x = (Math.random() - 0.5) * 15;
+            mesh.position.y = (Math.random() - 0.5) * 11;
+            mesh.position.z = -Math.random() * 8 - 1; // spread behind content
+            
+            mesh.rotation.x = Math.random() * Math.PI;
+            mesh.rotation.y = Math.random() * Math.PI;
+            
+            // Add custom animation parameters
+            mesh.floatSpeed = Math.random() * 0.003 + 0.001;
+            mesh.spinSpeedX = Math.random() * 0.008 - 0.004;
+            mesh.spinSpeedY = Math.random() * 0.008 - 0.004;
+            mesh.initialY = mesh.position.y;
+            mesh.floatOffset = Math.random() * Math.PI * 2;
+            
+            scene.add(mesh);
+            shapes.push(mesh);
+        }
+
+        camera.position.z = 7;
+
+        // Mouse tracking for 3D parallax shifts
+        let mouseX = 0, mouseY = 0;
+        let targetX = 0, targetY = 0;
+
+        window.addEventListener('mousemove', (e) => {
+            mouseX = (e.clientX - window.innerWidth / 2) / (window.innerWidth / 2);
+            mouseY = (e.clientY - window.innerHeight / 2) / (window.innerHeight / 2);
+        });
+
+        const clock = new THREE.Clock();
+
+        const animateScene = () => {
+            requestAnimationFrame(animateScene);
+            
+            const elapsed = clock.getElapsedTime();
+            
+            // Smoothly interpolate camera position based on mouse position
+            targetX = mouseX * 0.8;
+            targetY = -mouseY * 0.8;
+            
+            camera.position.x += (targetX - camera.position.x) * 0.04;
+            camera.position.y += (targetY - camera.position.y) * 0.04;
+            camera.lookAt(scene.position);
+            
+            // Animate floating structures
+            shapes.forEach(shape => {
+                shape.rotation.x += shape.spinSpeedX;
+                shape.rotation.y += shape.spinSpeedY;
+                shape.position.y = shape.initialY + Math.sin(elapsed * 0.8 + shape.floatOffset) * 0.4;
+            });
+            
+            renderer.render(scene, camera);
+        };
+
+        animateScene();
+
+        // Handle viewport resize
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+    }
+
+    // 2. LIQUID ACTIVE NAVBAR SLIDER INDICATOR
+    const navLinksContainer = document.getElementById('navLinksContainer');
+    const navIndicator = document.getElementById('navIndicator');
+    const navLinks = document.querySelectorAll('.nav-link');
+
+    const updateIndicator = (activeLink) => {
+        if (!activeLink || window.innerWidth <= 900) {
+            navIndicator.style.width = '0px';
+            return;
+        }
+        const rect = activeLink.getBoundingClientRect();
+        const parentRect = navLinksContainer.getBoundingClientRect();
+        
+        navIndicator.style.width = `${rect.width}px`;
+        navIndicator.style.left = `${rect.left - parentRect.left}px`;
+    };
+
+    // Initialize indicator position
+    setTimeout(() => {
+        const activeLink = document.querySelector('.nav-link.active');
+        updateIndicator(activeLink);
+    }, 200);
+
+    // Update indicator when clicking a link
+    navLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            navLinks.forEach(l => l.classList.remove('active'));
+            link.classList.add('active');
+            updateIndicator(link);
+        });
+    });
+
+    // Re-align indicator on screen resizing
+    window.addEventListener('resize', () => {
+        const activeLink = document.querySelector('.nav-link.active');
+        updateIndicator(activeLink);
+    });
+
+    // 3. SCROLL SPY - HIGHLIGHT ACTIVE NAVIGATION LINK
+    const sections = document.querySelectorAll('section');
     
+    const scrollSpy = () => {
+        let currentSectionId = 'hero';
+        
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop - 150; // offset for floating nav
+            const sectionHeight = section.clientHeight;
+            if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
+                currentSectionId = section.getAttribute('id');
+            }
+        });
+
+        navLinks.forEach(link => {
+            if (link.getAttribute('href') === `#${currentSectionId}`) {
+                if (!link.classList.contains('active')) {
+                    navLinks.forEach(l => l.classList.remove('active'));
+                    link.classList.add('active');
+                    updateIndicator(link);
+                }
+            }
+        });
+    };
+
+    window.addEventListener('scroll', scrollSpy);
+
+    // 4. CUSTOM CURSOR GLOW
+    const cursorGlow = document.getElementById('cursorGlow');
     document.addEventListener('mousemove', (e) => {
         cursorGlow.style.left = `${e.clientX}px`;
         cursorGlow.style.top = `${e.clientY}px`;
     });
 
-    // 2. MOBILE NAVIGATION MENU
+    // 5. MOBILE NAVIGATION DOCK TOGGLE
     const navToggle = document.getElementById('navToggle');
-    const navLinksContainer = document.getElementById('navLinksContainer');
-    const navLinks = document.querySelectorAll('.nav-link');
-
     navToggle.addEventListener('click', () => {
         navLinksContainer.classList.toggle('open');
         const icon = navToggle.querySelector('i');
@@ -27,7 +208,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Close mobile nav when clicking a link
     navLinks.forEach(link => {
         link.addEventListener('click', () => {
             navLinksContainer.classList.remove('open');
@@ -35,42 +215,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Add scroll class to Navbar
-    const navbar = document.getElementById('navbar');
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            navbar.classList.add('scrolled');
-        } else {
-            navbar.classList.remove('scrolled');
-        }
-    });
-
-    // 3. SCROLL SPY - HIGHLIGHT ACTIVE NAVIGATION LINK
-    const sections = document.querySelectorAll('section');
-    
-    const scrollSpy = () => {
-        let currentSectionId = 'hero';
-        
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop - 120; // offset for fixed nav
-            const sectionHeight = section.clientHeight;
-            if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
-                currentSectionId = section.getAttribute('id');
-            }
-        });
-
-        navLinks.forEach(link => {
-            link.classList.remove('active');
-            if (link.getAttribute('href') === `#${currentSectionId}`) {
-                link.classList.add('active');
-            }
-        });
-    };
-
-    window.addEventListener('scroll', scrollSpy);
-    window.addEventListener('resize', scrollSpy);
-
-    // 4. TYPEWRITER EFFECT
+    // 6. TYPEWRITER EFFECT
     const typingElement = document.getElementById('typingText');
     const roles = [
         "Machine Learning Pipelines",
@@ -90,176 +235,52 @@ document.addEventListener('DOMContentLoaded', () => {
         if (isDeleting) {
             typingElement.textContent = currentRole.substring(0, charIndex - 1);
             charIndex--;
-            typeDelay = 50; // faster deletion
+            typeDelay = 55;
         } else {
             typingElement.textContent = currentRole.substring(0, charIndex + 1);
             charIndex++;
-            typeDelay = 150; // normal typing speed
+            typeDelay = 130;
         }
 
         if (!isDeleting && charIndex === currentRole.length) {
             isDeleting = true;
-            typeDelay = 2000; // pause at completion
+            typeDelay = 2200;
         } else if (isDeleting && charIndex === 0) {
             isDeleting = false;
             roleIndex = (roleIndex + 1) % roles.length;
-            typeDelay = 500; // pause before typing next
+            typeDelay = 400;
         }
 
         setTimeout(typeEffect, typeDelay);
     };
 
     if (typingElement) {
-        setTimeout(typeEffect, 1000);
+        setTimeout(typeEffect, 800);
     }
 
-    // 5. 3D CARD TILT EFFECT (Vanilla CSS/JS)
+    // 7. 3D CARD TILT WITH PERSPECTIVE DEPTH
     const tiltCards = document.querySelectorAll('[data-tilt]');
-    
     tiltCards.forEach(card => {
         card.addEventListener('mousemove', (e) => {
             const rect = card.getBoundingClientRect();
-            const x = e.clientX - rect.left; // x coordinate inside the element.
-            const y = e.clientY - rect.top;  // y coordinate inside the element.
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
             
             const centerX = rect.width / 2;
             const centerY = rect.height / 2;
             
-            // Calculate rotational angles (-10 to 10 deg)
-            const rotateX = ((centerY - y) / centerY) * 12;
-            const rotateY = ((x - centerX) / centerX) * 12;
+            const rotateX = ((centerY - y) / centerY) * 15;
+            const rotateY = ((x - centerX) / centerX) * 15;
             
-            card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(10px)`;
+            card.style.transform = `perspective(1200px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(10px)`;
         });
         
         card.addEventListener('mouseleave', () => {
-            card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(0)';
+            card.style.transform = 'perspective(1200px) rotateX(0deg) rotateY(0deg) translateZ(0)';
         });
     });
 
-    // 6. INTERACTIVE CONSTELLATION CANVAS PARTICLES
-    const canvas = document.getElementById('particleCanvas');
-    const ctx = canvas.getContext('2d');
-
-    let particles = [];
-    let mouse = { x: null, y: null, radius: 120 };
-
-    const resizeCanvas = () => {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-        initParticles();
-    };
-
-    window.addEventListener('resize', resizeCanvas);
-    
-    window.addEventListener('mousemove', (e) => {
-        mouse.x = e.clientX;
-        mouse.y = e.clientY;
-    });
-
-    window.addEventListener('mouseout', () => {
-        mouse.x = null;
-        mouse.y = null;
-    });
-
-    class Particle {
-        constructor(x, y) {
-            this.x = x;
-            this.y = y;
-            this.size = Math.random() * 2 + 1;
-            this.speedX = Math.random() * 0.6 - 0.3;
-            this.speedY = Math.random() * 0.6 - 0.3;
-            this.density = (Math.random() * 30) + 1;
-        }
-
-        draw() {
-            ctx.fillStyle = 'rgba(0, 242, 254, 0.4)';
-            ctx.beginPath();
-            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-            ctx.closePath();
-            ctx.fill();
-        }
-
-        update() {
-            // Movement physics
-            this.x += this.speedX;
-            this.y += this.speedY;
-
-            // Bounce off boundaries
-            if (this.x < 0 || this.x > canvas.width) this.speedX = -this.speedX;
-            if (this.y < 0 || this.y > canvas.height) this.speedY = -this.speedY;
-
-            // Repulsion from mouse cursor
-            if (mouse.x !== null && mouse.y !== null) {
-                let dx = mouse.x - this.x;
-                let dy = mouse.y - this.y;
-                let distance = Math.sqrt(dx * dx + dy * dy);
-                if (distance < mouse.radius) {
-                    let forceDirectionX = dx / distance;
-                    let forceDirectionY = dy / distance;
-                    let maxDistance = mouse.radius;
-                    let force = (maxDistance - distance) / maxDistance;
-                    let directionX = forceDirectionX * force * this.density * 0.2;
-                    let directionY = forceDirectionY * force * this.density * 0.2;
-                    
-                    this.x -= directionX;
-                    this.y -= directionY;
-                }
-            }
-        }
-    }
-
-    const initParticles = () => {
-        particles = [];
-        let numberOfParticles = (canvas.width * canvas.height) / 13000;
-        numberOfParticles = Math.min(numberOfParticles, 120); // capped for performance
-        
-        for (let i = 0; i < numberOfParticles; i++) {
-            let x = Math.random() * canvas.width;
-            let y = Math.random() * canvas.height;
-            particles.push(new Particle(x, y));
-        }
-    };
-
-    const drawConnections = () => {
-        let opacity = 1;
-        for (let a = 0; a < particles.length; a++) {
-            for (let b = a; b < particles.length; b++) {
-                let dx = particles[a].x - particles[b].x;
-                let dy = particles[a].y - particles[b].y;
-                let distance = Math.sqrt(dx * dx + dy * dy);
-
-                if (distance < 110) {
-                    opacity = 1 - (distance / 110);
-                    ctx.strokeStyle = `rgba(99, 102, 241, ${opacity * 0.25})`;
-                    ctx.lineWidth = 1;
-                    ctx.beginPath();
-                    ctx.moveTo(particles[a].x, particles[a].y);
-                    ctx.lineTo(particles[b].x, particles[b].y);
-                    ctx.stroke();
-                }
-            }
-        }
-    };
-
-    const animateParticles = () => {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        
-        particles.forEach(particle => {
-            particle.update();
-            particle.draw();
-        });
-        
-        drawConnections();
-        requestAnimationFrame(animateParticles);
-    };
-
-    // Initialize Canvas
-    resizeCanvas();
-    animateParticles();
-
-
-    // 7. WEB3FORMS CONTACT FORM AJAX SUBMISSION
+    // 8. WEB3FORMS CONTACT FORM SUBMISSION
     const contactForm = document.getElementById('contactForm');
     const submitBtn = document.getElementById('submitBtn');
     const submitBtnText = submitBtn.querySelector('span');
@@ -272,9 +293,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const modalCloseBtn = document.getElementById('modalCloseBtn');
 
     const showModal = (type, title, message) => {
-        // Clear previous classes
         modalIconWrap.className = 'modal-icon-wrap';
-        
         if (type === 'success') {
             modalIconWrap.classList.add('success');
             modalIconWrap.innerHTML = '<i class="fa-solid fa-circle-check"></i>';
@@ -282,7 +301,6 @@ document.addEventListener('DOMContentLoaded', () => {
             modalIconWrap.classList.add('error');
             modalIconWrap.innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i>';
         }
-        
         modalTitle.textContent = title;
         modalText.textContent = message;
         modalOverlay.classList.add('active');
@@ -301,7 +319,6 @@ document.addEventListener('DOMContentLoaded', () => {
         contactForm.addEventListener('submit', async (e) => {
             e.preventDefault();
 
-            // Verify if key has been modified
             const accessKeyInput = contactForm.querySelector('input[name="access_key"]');
             if (accessKeyInput && accessKeyInput.value === 'YOUR_ACCESS_KEY_HERE') {
                 showModal(
@@ -312,7 +329,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
-            // Set loading state
             submitBtn.disabled = true;
             submitBtnText.textContent = 'Sending Message...';
             submitBtnIcon.className = 'fa-solid fa-circle-notch fa-spin';
@@ -352,7 +368,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     'Could not connect to the form server. Please check your network connection and try again.'
                 );
             } finally {
-                // Restore submit button
                 submitBtn.disabled = false;
                 submitBtnText.textContent = 'Send Message';
                 submitBtnIcon.className = 'fa-solid fa-paper-plane';
