@@ -337,19 +337,19 @@ document.addEventListener('DOMContentLoaded', () => {
                 - <span class="term-highlight">sudo hack</span> : Initiate core override`;
                 break;
             case 'about':
-                output = `Kruthika R Gowdar - Final-year Computer Science student specializing in Machine Learning, Deep Learning, and full-stack AI development. Experienced in building and deploying end-to-end ML pipelines, REST APIs, and data-driven web applications using Python, PyTorch, and FastAPI. Seeking an AI/ML Engineer or Data Scientist role to apply computer vision, model deployment, and GenAI integration in real-world products.`;
+                output = `Kruthika R Gowdar - Computer Science graduate (B.E., CGPA 8.5) specializing in Python development, Machine Learning/AI, and DevOps fundamentals. Experienced in building and deploying end-to-end ML pipelines, REST APIs, and containerized web applications using Python, PyTorch, and FastAPI. Seeking entry-level opportunities as a Software Engineer, Python Developer, or AI/ML Engineer.`;
                 break;
             case 'skills':
                 output = `LANGUAGES : Python, SQL<br>
                 WEB & API : HTML, CSS, REST API, FastAPI, Flask, Streamlit<br>
                 ML / AI   : Machine Learning, Deep Learning, Computer Vision, NLP, Transfer Learning, Model Deployment<br>
                 LIBRARIES : PyTorch, Scikit-learn, Pandas, NumPy, SHAP<br>
-                DEVOPS    : Docker, CI/CD, Git, GitHub, Agile`;
+                DEVOPS    : Docker, Jenkins, CI/CD, Kubernetes, Prometheus, Grafana, Git, GitHub, Agile`;
                 break;
             case 'projects':
                 output = `1. <span class="term-highlight">OncoAI</span> : Breast Cancer Detection using Vision Transformers (ViTs) and PyTorch (91% Accuracy).<br>
                 2. <span class="term-highlight">EchoSphere</span> : Real-time Deepfake Audio Detection system with FastAPI, ECAPA-TDNN, and Docker.<br>
-                3. <span class="term-highlight">Placement Predictor</span> : Machine Learning student profile classifier featuring SHAP values and Streamlit UI.<br>
+                3. <span class="term-highlight">AI Resume Analyzer</span> : Containerized Flask app with Jenkins CI/CD, Kubernetes deployment, and Prometheus/Grafana monitoring.<br>
                 4. <span class="term-highlight">KruthikaOS</span> : Glassmorphic 3D Desktop portfolio system written in HTML/CSS/JS with Three.js.`;
                 break;
             case 'contact':
