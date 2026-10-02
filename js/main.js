@@ -527,7 +527,8 @@ const allSkills = [
     ...skills.devops_cicd.map(s => ({ ...s, category: 'devops' })),
     ...skills.kubernetes.map(s => ({ ...s, category: 'k8s' })),
     ...skills.monitoring_observability.map(s => ({ ...s, category: 'monitoring' })),
-    ...skills.version_control.map(s => ({ ...s, category: 'tools' }))
+    ...skills.version_control.map(s => ({ ...s, category: 'tools' })),
+    ...skills.ai_ml.map(s => ({ ...s, category: 'ai' }))
 ];
 
 const categoryColors = {
@@ -537,7 +538,8 @@ const categoryColors = {
     devops: 0xf59e0b,
     k8s: 0x326ce5,
     monitoring: 0xe879f9,
-    tools: 0xfbbf24
+    tools: 0xfbbf24,
+    ai: 0xec4899
 };
 
 const skillOrbs = [];
@@ -709,7 +711,8 @@ function populateSkills() {
         devops_cicd: 'devops-skills',
         kubernetes: 'k8s-skills',
         monitoring_observability: 'monitoring-skills',
-        version_control: 'vcs-skills'
+        version_control: 'vcs-skills',
+        ai_ml: 'ai-skills'
     };
     for (const [category, elementId] of Object.entries(categories)) {
         const container = document.getElementById(elementId);

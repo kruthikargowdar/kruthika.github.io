@@ -55,6 +55,15 @@ export const skills = {
   version_control: [
     { name: 'Git' },
     { name: 'GitHub' }
+  ],
+  ai_ml: [
+    { name: 'Machine Learning' },
+    { name: 'Deep Learning' },
+    { name: 'PyTorch' },
+    { name: 'Vision Transformers (ViT)' },
+    { name: 'Transfer Learning' },
+    { name: 'ECAPA-TDNN' },
+    { name: 'SHAP' }
   ]
 };
 
