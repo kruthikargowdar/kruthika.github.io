@@ -270,14 +270,27 @@
     font-family: var(--font-display);
     font-size: var(--fs-2xl);
     margin-bottom: var(--space-lg);
-    color: var(--text-primary);
+    color: #ffffff;
+    font-weight: 700;
+}
+
+.about-card h3 {
+    color: #ffffff;
+    font-weight: 700;
+    margin-bottom: var(--space-sm);
 }
 
 .about-card p {
-    font-size: var(--fs-base);
-    color: var(--text-secondary);
+    font-size: var(--fs-lg);
+    color: #f0f0f5;
     line-height: 1.8;
     margin-bottom: var(--space-xl);
+    font-weight: 500;
+}
+
+.about-card strong {
+    color: #ffffff;
+    font-weight: 700;
 }
 
 .about-stats {

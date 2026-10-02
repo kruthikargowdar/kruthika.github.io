@@ -521,19 +521,23 @@ const skillsGroup = new THREE.Group();
 skillsGroup.position.set(0, 0, -35);
 
 const allSkills = [
+    ...skills.programming_backend.map(s => ({ ...s, category: 'backend' })),
     ...skills.software_engineering.map(s => ({ ...s, category: 'software' })),
-    ...skills.backend_apis.map(s => ({ ...s, category: 'backend' })),
-    ...skills.cloud_devops.map(s => ({ ...s, category: 'cloud' })),
-    ...skills.version_control.map(s => ({ ...s, category: 'tools' })),
-    ...skills.ai_ml.map(s => ({ ...s, category: 'ai' }))
+    ...skills.cloud.map(s => ({ ...s, category: 'cloud' })),
+    ...skills.devops_cicd.map(s => ({ ...s, category: 'devops' })),
+    ...skills.kubernetes.map(s => ({ ...s, category: 'k8s' })),
+    ...skills.monitoring_observability.map(s => ({ ...s, category: 'monitoring' })),
+    ...skills.version_control.map(s => ({ ...s, category: 'tools' }))
 ];
 
 const categoryColors = {
-    software: 0x6c63ff,
     backend: 0x4ade80,
+    software: 0x6c63ff,
     cloud: 0x38bdf8,
-    tools: 0xfbbf24,
-    ai: 0xec4899,
+    devops: 0xf59e0b,
+    k8s: 0x326ce5,
+    monitoring: 0xe879f9,
+    tools: 0xfbbf24
 };
 
 const skillOrbs = [];
@@ -699,11 +703,13 @@ const pointer = new THREE.Vector2();
 // Skills
 function populateSkills() {
     const categories = { 
+        programming_backend: 'backend-skills', 
         software_engineering: 'software-skills', 
-        backend_apis: 'backend-skills', 
-        cloud_devops: 'cloud-skills',
-        version_control: 'tools-skills',
-        ai_ml: 'ai-skills'
+        cloud: 'cloud-skills',
+        devops_cicd: 'devops-skills',
+        kubernetes: 'k8s-skills',
+        monitoring_observability: 'monitoring-skills',
+        version_control: 'vcs-skills'
     };
     for (const [category, elementId] of Object.entries(categories)) {
         const container = document.getElementById(elementId);

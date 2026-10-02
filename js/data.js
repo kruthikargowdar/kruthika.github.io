@@ -3,46 +3,58 @@
 // ============================================
 
 export const skills = {
-  software_engineering: [
+  programming_backend: [
     { name: 'Python' },
     { name: 'SQL' },
-    { name: 'Data Structures' },
-    { name: 'OOP' },
-    { name: 'Data Pipeline' }
-  ],
-  backend_apis: [
-    { name: 'FastAPI' },
     { name: 'Flask' },
-    { name: 'REST API' },
-    { name: 'HTML' },
-    { name: 'CSS' },
-    { name: 'Streamlit' }
+    { name: 'FastAPI' },
+    { name: 'REST APIs' }
   ],
-  cloud_devops: [
+  software_engineering: [
+    { name: 'OOP' },
+    { name: 'Data Structures & Algorithms' },
+    { name: 'SDLC' },
+    { name: 'Unit Testing' },
+    { name: 'Debugging' },
+    { name: 'Troubleshooting' }
+  ],
+  cloud: [
     { name: 'AWS' },
+    { name: 'EC2' },
+    { name: 'EKS' },
+    { name: 'VPC' },
+    { name: 'IAM' }
+  ],
+  devops_cicd: [
     { name: 'Linux' },
     { name: 'Docker' },
-    { name: 'Kubernetes' },
-    { name: 'CI/CD' }
+    { name: 'Docker Hub' },
+    { name: 'Jenkins' },
+    { name: 'CI/CD' },
+    { name: 'Containerization' },
+    { name: 'Deployment Workflows' }
+  ],
+  kubernetes: [
+    { name: 'Kubernetes Architecture' },
+    { name: 'Pods' },
+    { name: 'Deployments' },
+    { name: 'ReplicaSets' },
+    { name: 'Services' },
+    { name: 'ConfigMaps' },
+    { name: 'Secrets' },
+    { name: 'Health Probes' },
+    { name: 'Scaling' },
+    { name: 'Troubleshooting' }
+  ],
+  monitoring_observability: [
+    { name: 'Prometheus' },
+    { name: 'Grafana' },
+    { name: 'Application Monitoring' },
+    { name: 'Infrastructure Monitoring' }
   ],
   version_control: [
     { name: 'Git' },
-    { name: 'GitHub' },
-    { name: 'Agile' }
-  ],
-  ai_ml: [
-    { name: 'Machine Learning' },
-    { name: 'Deep Learning' },
-    { name: 'Computer Vision' },
-    { name: 'NLP' },
-    { name: 'Transfer Learning' },
-    { name: 'Model Deployment' },
-    { name: 'PyTorch' },
-    { name: 'Scikit-learn' },
-    { name: 'Pandas' },
-    { name: 'NumPy' },
-    { name: 'SHAP' },
-    { name: 'Explainable AI' }
+    { name: 'GitHub' }
   ]
 };
 
@@ -67,8 +79,8 @@ export const projects = [
   },
   {
     title: 'AI Resume Analyzer',
-    description: 'Trained a logistic regression model on historical student data; applied SHAP feature importance analysis to identify the top placement drivers. Delivered an interactive Streamlit UI enabling recruiters and students to explore predictions in real time.',
-    stack: ['Machine Learning', 'Streamlit', 'Explainable AI', 'Scikit-learn', 'SHAP'],
+    description: 'Developed and deployed a robust CI/CD pipeline for an AI Resume Analyzer. Built containerized environments, configured automated Jenkins workflows for testing and deployment, orchestrated the application on Kubernetes, and established full observability using Prometheus and Grafana.',
+    stack: ['Python', 'Flask', 'Docker', 'Jenkins', 'Kubernetes', 'Prometheus', 'Grafana', 'GitHub'],
     githubUrl: 'https://github.com/kruthikargowdar',
     liveUrl: null,
   }
