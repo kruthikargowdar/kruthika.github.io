@@ -261,9 +261,122 @@
    About Section
    ============================================ */
 
+.about-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4rem; /* generous spacing */
+    max-width: 1000px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.about-visual {
+    flex: 0 0 auto;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile-orbit-container {
+    position: relative;
+    width: 340px;
+    height: 340px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile-photo {
+    width: 230px;
+    height: 230px;
+    border-radius: 50%; /* Perfectly circular */
+    object-fit: cover;
+    object-position: center 15%; /* Shift the image downwards within the circle */
+    border: 3px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 30px rgba(108, 99, 255, 0.4);
+    position: relative;
+    z-index: 5;
+}
+
+/* Orbital Rings */
+.orbit-ring {
+    position: absolute;
+    border-radius: 50%;
+    border: 1px dashed rgba(255, 255, 255, 0.15);
+    animation: rotate 20s linear infinite;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ring-1 {
+    width: 280px;
+    height: 280px;
+    animation-duration: 30s;
+}
+
+.ring-2 {
+    width: 340px;
+    height: 340px;
+    animation-duration: 45s;
+    animation-direction: reverse;
+}
+
+/* Tiny Planets */
+.tiny-planet {
+    position: absolute;
+    border-radius: 50%;
+    background: radial-gradient(circle, #f3ff17, #f59e0b);
+}
+
+.planet-1 {
+    width: 8px;
+    height: 8px;
+    top: 10px;
+    left: 50px;
+    box-shadow: 0 0 10px #f3ff17;
+}
+
+.planet-2 {
+    width: 12px;
+    height: 12px;
+    bottom: 20px;
+    right: 40px;
+    background: radial-gradient(circle, #38bdf8, #6c63ff);
+    box-shadow: 0 0 10px #38bdf8;
+}
+
+/* Tiny Stars */
+.tiny-star {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    background: #ffffff;
+    border-radius: 50%;
+    box-shadow: 0 0 5px #ffffff;
+    animation: twinkle 3s infinite alternate;
+}
+
+.star-1 { top: -10px; right: 20px; animation-delay: 0s; }
+.star-2 { bottom: 50px; left: -10px; animation-delay: 1s; }
+.star-3 { top: 100px; right: -20px; animation-delay: 2s; }
+
+@keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+@keyframes twinkle {
+    0% { opacity: 0.3; transform: scale(0.8); }
+    100% { opacity: 1; transform: scale(1.2); }
+}
+
 .about-card {
-    max-width: 600px;
-    text-align: center;
+    text-align: left;
+    max-width: 550px;
+    flex: 1;
 }
 
 .about-card h2 {
@@ -328,47 +441,55 @@
 
 .skills-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: var(--space-lg);
-    max-width: 900px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.8rem;
+    max-width: 1000px;
     width: 100%;
+    margin: 0 auto;
 }
 
 .skill-category {
-    padding: var(--space-xl);
+    padding: 1rem 1.25rem;
+    display: flex;
+    flex-direction: column;
 }
 
 .skill-category h3 {
     font-family: var(--font-display);
-    font-size: var(--fs-lg);
-    margin-bottom: var(--space-lg);
+    font-size: 1rem;
+    margin-bottom: 0.75rem;
     display: flex;
     align-items: center;
-    gap: var(--space-sm);
+    gap: 0.5rem;
+    color: #ffffff;
 }
 
 .category-icon {
-    font-size: var(--fs-xl);
+    font-size: 1.1rem;
 }
 
 .skill-tags {
     display: flex;
     flex-wrap: wrap;
-    gap: var(--space-sm);
+    gap: 0.4rem;
+    margin-top: auto;
 }
 
 .skill-tag {
     display: inline-flex;
     align-items: center;
-    padding: 0.4rem 0.85rem;
+    padding: 0.25rem 0.6rem;
     background: rgba(108, 99, 255, 0.08);
     border: 1px solid rgba(108, 99, 255, 0.15);
     border-radius: var(--radius-xl);
-    font-size: var(--fs-sm);
-    color: var(--text-primary);
+    font-size: 0.85rem;
+    color: #f0f0f5;
     cursor: default;
     transition: all var(--transition);
     position: relative;
+    white-space: normal;
+    text-align: left;
+    line-height: 1.2;
 }
 
 .skill-tag:hover {
@@ -571,6 +692,16 @@
         padding: var(--space-lg);
     }
 
+    .about-container {
+        flex-direction: column;
+        text-align: center;
+        gap: 2rem;
+    }
+    
+    .about-card {
+        text-align: center;
+    }
+
     .hero-name {
         font-size: clamp(2rem, 8vw, 3.5rem);
     }
@@ -588,8 +719,27 @@
     }
 
     .skills-container {
-        grid-template-columns: 1fr;
-        max-width: 400px;
+        grid-template-columns: repeat(2, 1fr);
+        max-width: 100%;
+        gap: 0.5rem;
+    }
+
+    .skill-category {
+        padding: 0.75rem;
+    }
+    
+    .skill-category h3 {
+        font-size: 0.9rem;
+        margin-bottom: 0.4rem;
+    }
+    
+    .category-icon {
+        font-size: 0.95rem;
+    }
+    
+    .skill-tag {
+        padding: 0.2rem 0.5rem;
+        font-size: 0.75rem;
     }
 
     .projects-grid {

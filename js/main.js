@@ -7,11 +7,12 @@ import { skills, projects } from './data.js';
 
 // ============================================
 // Constants
-const SECTION_COUNT = 6;
-const SECTION_NAMES = ['Home', 'About', 'Skills', 'Projects', 'Certifications', 'Contact'];
+const SECTION_COUNT = 7;
+const SECTION_NAMES = ['Home', 'About', 'Experience', 'Skills', 'Projects', 'Certifications', 'Contact'];
 const CAMERA_POSITIONS = [
     { x: 0, y: 0, z: 5 },
     { x: 0, y: 0.5, z: -10 },
+    { x: 0, y: 0, z: -22 },
     { x: 0, y: 0, z: -35 },
     { x: 0, y: 0, z: -55 },
     { x: 0, y: 0, z: -75 },
@@ -351,7 +352,8 @@ heroGroup.rotation.z = 0.2;
 // About Section — Solar System
 // ============================================
 const solarSystemGroup = new THREE.Group();
-solarSystemGroup.position.set(0, 0, -12);
+solarSystemGroup.position.set(4, 0, -12); // Move right
+solarSystemGroup.scale.set(0.5, 0.5, 0.5); // Make it 50% smaller
 
 // --- Sun ---
 const sunGeo = new THREE.SphereGeometry(0.8, 32, 32);
@@ -799,7 +801,7 @@ function goToSection(index) {
 
     // Overlay transition
     document.querySelectorAll('.overlay-section').forEach(s => s.classList.remove('active'));
-    const overlayIds = ['hero-overlay', 'about-overlay', 'skills-overlay', 'projects-overlay', 'contact-overlay'];
+    const overlayIds = ['hero-overlay', 'about-overlay', 'experience-overlay', 'skills-overlay', 'projects-overlay', 'certifications-overlay', 'contact-overlay'];
 
     setTimeout(() => {
         const overlay = document.getElementById(overlayIds[index]);

@@ -40,10 +40,11 @@
     <div class="nav-links">
       <button class="nav-link active" data-section="0">Home</button>
       <button class="nav-link" data-section="1">About</button>
-      <button class="nav-link" data-section="2">Skills</button>
-      <button class="nav-link" data-section="3">Projects</button>
-      <button class="nav-link" data-section="4">Certifications</button>
-      <button class="nav-link" data-section="5">Contact</button>
+      <button class="nav-link" data-section="2">Experience</button>
+      <button class="nav-link" data-section="3">Skills</button>
+      <button class="nav-link" data-section="4">Projects</button>
+      <button class="nav-link" data-section="5">Certifications</button>
+      <button class="nav-link" data-section="6">Contact</button>
     </div>
     <button id="reduced-motion-toggle" title="Toggle reduced motion" aria-label="Toggle reduced motion">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -57,10 +58,11 @@
   <div id="section-indicators">
     <button class="indicator active" data-section="0" title="Home"></button>
     <button class="indicator" data-section="1" title="About"></button>
-    <button class="indicator" data-section="2" title="Skills"></button>
-    <button class="indicator" data-section="3" title="Projects"></button>
-    <button class="indicator" data-section="4" title="Certifications"></button>
-    <button class="indicator" data-section="5" title="Contact"></button>
+    <button class="indicator" data-section="2" title="Experience"></button>
+    <button class="indicator" data-section="3" title="Skills"></button>
+    <button class="indicator" data-section="4" title="Projects"></button>
+    <button class="indicator" data-section="5" title="Certifications"></button>
+    <button class="indicator" data-section="6" title="Contact"></button>
   </div>
 
   <!-- HTML Overlays -->
@@ -94,52 +96,100 @@
 
     <!-- About Overlay -->
     <section id="about-overlay" class="overlay-section">
-      <div class="section-label">About & Experience</div>
-      <div class="about-card glass-card">
-        <h2>Architecting the future</h2>
-        <p>
-          I am a 2026 Computer Science graduate from G M Institute of Technology, driven by a passion for building robust and scalable technology. My focus lies at the intersection of software engineering, cloud infrastructure, and intelligent systems.
-        </p>
-        <div style="margin-top: 1rem; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1rem;">
-          <h3>Experience</h3>
-          <p><strong>Python Full Stack Developer Intern</strong> &bull; Dhee Coding Labs<br>Jan 2026 — Present<br>Spearheading full-stack web application development using modern Python frameworks. Gaining deep practical experience in end-to-end deployment, REST API integration, and collaborative software engineering methodologies.</p>
+      <div class="section-label">About Me</div>
+      <div class="about-container">
+        
+        <!-- LEFT: Profile Photo & Orbital Elements -->
+        <div class="about-visual">
+          <div class="profile-orbit-container">
+            <!-- Orbital rings -->
+            <div class="orbit-ring ring-1">
+              <div class="tiny-planet planet-1"></div>
+            </div>
+            <div class="orbit-ring ring-2">
+              <div class="tiny-planet planet-2"></div>
+            </div>
+            <!-- Stars -->
+            <div class="tiny-star star-1"></div>
+            <div class="tiny-star star-2"></div>
+            <div class="tiny-star star-3"></div>
+            <!-- Profile Photo -->
+            <img src="assets/profile.jpg" alt="Kruthika Profile" class="profile-photo" />
+          </div>
         </div>
+
+        <!-- RIGHT: About Content -->
+        <div class="about-card glass-card">
+          <h2>Architecting the future</h2>
+          <p>
+            I am a 2026 Computer Science graduate from G M Institute of Technology, driven by a passion for building robust and scalable technology. My expertise spans software engineering, backend Python development, cloud infrastructure (AWS), DevOps workflows, and Artificial Intelligence/Machine Learning.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Experience Overlay -->
+    <section id="experience-overlay" class="overlay-section">
+      <div class="section-label">Experience</div>
+      
+      <div style="display: flex; flex-direction: column; gap: 2rem; max-width: 800px; margin: 0 auto; width: 100%;">
+        
+        <div class="glass-card" style="text-align: left; padding: 2rem;">
+          <h3 style="color: #ffffff; margin-bottom: 0.5rem; font-size: 1.3rem;">Python Full Stack Developer Intern</h3>
+          <h4 style="color: var(--accent); margin-bottom: 1rem; font-weight: 500;">Dhee Coding Labs <span style="color: #a0a0b0; font-size: 0.9em;">| Jan 2026 &mdash; Jun 2026</span></h4>
+          <ul style="color: #f0f0f5; line-height: 1.6; padding-left: 1.2rem; font-size: 0.95rem;">
+            <li style="margin-bottom: 0.5rem;">Developed and deployed full-stack web applications using Python, Flask, and REST APIs.</li>
+            <li style="margin-bottom: 0.5rem;">Implemented backend functionality and integrated REST APIs for core application modules.</li>
+            <li>Worked with application debugging, testing, and deployment workflows.</li>
+          </ul>
+        </div>
+
+        <div class="glass-card" style="text-align: left; padding: 2rem;">
+          <h3 style="color: #ffffff; margin-bottom: 0.5rem; font-size: 1.3rem;">SPARK AI Research Intern</h3>
+          <h4 style="color: var(--accent); margin-bottom: 1rem; font-weight: 500;">Subbaiah Research Institute & JNN College of Engineering <span style="color: #a0a0b0; font-size: 0.9em;">| Oct 2024</span></h4>
+          <ul style="color: #f0f0f5; line-height: 1.6; padding-left: 1.2rem; font-size: 0.95rem;">
+            <li style="margin-bottom: 0.5rem;">Developed AI-driven healthcare applications using machine learning and deep learning on real-world clinical datasets.</li>
+            <li>Executed data preprocessing, model training, and evaluation workflows.</li>
+          </ul>
+        </div>
+
       </div>
     </section>
 
     <!-- Skills Overlay -->
     <section id="skills-overlay" class="overlay-section">
       <div class="section-label">Skills & Expertise</div>
-      <div class="skills-container" style="display: flex; flex-wrap: wrap; gap: 1rem; max-width: 900px;">
-        <div class="skill-category glass-card" style="flex: 1 1 calc(33% - 1rem);">
+      <div class="skills-container">
+        <div class="skill-category glass-card">
           <h3><span class="category-icon">⚡</span> Programming & Backend</h3>
           <div class="skill-tags" id="backend-skills"></div>
         </div>
-        <div class="skill-category glass-card" style="flex: 1 1 calc(33% - 1rem);">
+        <div class="skill-category glass-card">
           <h3><span class="category-icon">⚙️</span> Software Engineering</h3>
           <div class="skill-tags" id="software-skills"></div>
         </div>
-        <div class="skill-category glass-card" style="flex: 1 1 calc(33% - 1rem);">
+        <div class="skill-category glass-card">
           <h3><span class="category-icon">☁️</span> Cloud</h3>
           <div class="skill-tags" id="cloud-skills"></div>
         </div>
-        <div class="skill-category glass-card" style="flex: 1 1 calc(33% - 1rem);">
+        <div class="skill-category glass-card">
           <h3><span class="category-icon">🔄</span> DevOps & CI/CD</h3>
           <div class="skill-tags" id="devops-skills"></div>
         </div>
-        <div class="skill-category glass-card" style="flex: 1 1 calc(33% - 1rem);">
+        <div class="skill-category glass-card">
           <h3><span class="category-icon">🚢</span> Kubernetes</h3>
           <div class="skill-tags" id="k8s-skills"></div>
         </div>
-        <div class="skill-category glass-card" style="flex: 1 1 calc(33% - 1rem);">
+        <div class="skill-category glass-card">
           <h3><span class="category-icon">📊</span> Monitoring & Observability</h3>
           <div class="skill-tags" id="monitoring-skills"></div>
         </div>
-        <div class="skill-category glass-card" style="flex: 1 1 calc(33% - 1rem);">
+        <div class="skill-category glass-card">
           <h3><span class="category-icon">🛠️</span> Version Control</h3>
           <div class="skill-tags" id="vcs-skills"></div>
         </div>
-        <div class="skill-category glass-card" style="flex: 1 1 calc(33% - 1rem);">
+        <div class="skill-category glass-card">
           <h3><span class="category-icon">🧠</span> AI & Machine Learning</h3>
           <div class="skill-tags" id="ai-skills"></div>
         </div>
